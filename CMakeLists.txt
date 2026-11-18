@@ -30,6 +30,8 @@ if(TARGET freetype)
     set_target_properties(freetype PROPERTIES UNITY_BUILD OFF)
 endif()
 
-add_executable(ark main.cpp)
+# 拆分后有 3 个源文件（config.h/game.h/render.h 是头文件，不在这里列）：
+#   main.cpp   总控        game.cpp   后端·规则        render.cpp 前端·美术
+add_executable(ark main.cpp game.cpp render.cpp)
 target_link_libraries(ark PRIVATE SFML::Graphics SFML::Window SFML::System)
 set_target_properties(ark PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}")   # ark.exe 生成到项目根目录
